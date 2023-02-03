@@ -4,7 +4,116 @@ var numHijos = 30;
 var numParticulas = 15;
 var particulasCreadas = 0;
 
-
+function executeScript() {
+    if (window.innerWidth < 600) {
+		function crearParticula() {
+			var particula = document.createElement("div");
+			particula.className="particula";
+		
+			var y = 600;
+			var x = 0.3 * window.innerWidth;
+		
+			particula.style.top = 600 + "px";
+			particula.style.left = x + "px";
+		
+			var velocidadY = -15 - (Math.random() * 15);
+		
+			particula.setAttribute("data-velocidad-y", velocidadY);
+			particula.setAttribute("data-velocidad-x", "0");
+			particula.setAttribute("data-padre", "true");
+		
+			particula.style.background = getRandomColor();
+		
+			document.getElementsByTagName("body")[0].append(particula);
+		
+			particulasCreadas++;
+		
+			if (particulasCreadas < numParticulas) {
+				setTimeout(crearParticula, 100 + (Math.random() * 1500));
+			}
+		}
+		
+		function start() {
+			crearParticula();
+		}
+		
+		function update() {
+			var particulas = document.getElementsByClassName("particula");
+			for (var p=0; p < particulas.length; p++) {
+				var particula = particulas[p];
+		
+				var velocidadY = parseFloat(particula.getAttribute("data-velocidad-y"));
+				velocidadY += gravedad;
+		
+				particula.setAttribute("data-velocidad-y", velocidadY);
+		
+				var top = particula.style.top ? particula.style.top : "10"; //10px
+				top = parseFloat(top.replace("px", ""));
+				top += velocidadY;
+				particula.style.top = top + "px";
+		
+				var velocidadX = parseFloat(particula.getAttribute("data-velocidad-x"));
+		
+				var left = particula.style.left ? particula.style.left : "0";
+				left = parseFloat(left.replace("px", ""));
+				left += velocidadX;
+				particula.style.left = left + "px";
+		
+				var padre = particula.getAttribute("data-padre");
+		
+				if (velocidadY >= 0 && padre === "true") {
+					explotar(particula);
+				}
+		
+				if (top > 700) {
+					particula.remove();
+				}
+			}
+		
+			setTimeout(update, 20);
+		}
+		
+		function explotar(particula) {
+		
+			for (var h=0; h < numHijos; h++) {
+				var hijo = document.createElement("div");
+				hijo.className = "particula";
+		
+				hijo.style.top = particula.style.top;
+				hijo.style.left = particula.style.left;
+				hijo.style.background = particula.style.background;
+		
+				var velocidadY = (Math.random() * 20) - 18;
+				hijo.setAttribute("data-velocidad-y", velocidadY);
+				var velocidadX = (Math.random() * 16) - 8;
+				hijo.setAttribute("data-velocidad-x", velocidadX);
+		
+		
+				hijo.setAttribute("data-padre", false);
+				document.getElementsByTagName("body")[0].append(hijo);
+			}
+		
+			particula.remove();
+		}
+		
+		
+		window.onload = function() {
+			start();
+		
+			update();
+		};
+		
+		
+		//utilerias
+		function getRandomColor() {
+		  var letters = '0123456789ABCDEF';
+		  var color = '#';
+		  for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		  }
+		  return color;
+		}
+    } else {
 		function crearParticula() {
 			var particula = document.createElement("div");
 			particula.className="particula";
@@ -112,4 +221,9 @@ var particulasCreadas = 0;
 		  }
 		  return color;
 		}
-    
+    }
+  }
+
+  window.addEventListener('resize', executeScript);
+  executeScript();
+
