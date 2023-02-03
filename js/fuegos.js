@@ -4,10 +4,7 @@ var numHijos = 30;
 var numParticulas = 15;
 var particulasCreadas = 0;
 
-function executeScript() {
-    if (window.innerWidth < 600) {
-      // Ejecuta el script para pantallas pequeñas
-    } else {
+
 		function crearParticula() {
 			var particula = document.createElement("div");
 			particula.className="particula";
@@ -115,9 +112,4 @@ function executeScript() {
 		  }
 		  return color;
 		}
-    }
-  }
-
-  window.addEventListener('resize', executeScript);
-  executeScript();
-
+    
