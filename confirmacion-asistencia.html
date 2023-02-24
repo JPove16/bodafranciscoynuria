@@ -73,7 +73,6 @@
 								</ul>
 							</li>
 							<li><a href="preboda.html">Preboda</a></li>
-							<li><a href="intolerancias.html">Intolerancias</a></li>
 							<li class="active"><a href="confirmacion-asistencia.html">Confirmación de asistencia</a></li>
 						</ul>
 					</div>
@@ -139,27 +138,60 @@
 
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="email">Email</label>
-								<input type="text" id="email" class="form-control" placeholder="Email">
-							</div>
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label for="subject">Teléfono*</label>
+								<label for="subject"><b>Teléfono*</b></label>
 								<input type="text" id="subject" class="form-control" placeholder="Teléfono">
 							</div>
 						</div>
 
+						<br>
+
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="message">Mensaje</label>
+								<label for="needs"><b>¿Necesitas autobús para ir?</b></label>
+									<select class="form-control" id="needs" name="needs">
+										<option value="no">No</option>
+										<option value="yes">Sí</option>
+									</select><br>
+
+									<div id="additionalOptions" style="display: none;">
+										<p>¿Desde dónde necesitas el autobús?</p>
+										<input type="radio" name="additional_option" value="option_1"> <b>Plaza Castilla</b>
+										<br>
+										<input type="radio" name="additional_option" value="option_2"> <b>Getafe Central</b>
+										<br>
+									</div>
+							</div>
+						</div>
+
+						<br>
+
+						<div class="row form-group">
+							<div class="col-md-12">
+								<label for="needs_2"><b>¿Tienes alguna intolerancia alimenticia?</b></label>
+									<select class="form-control" id="needs_2" name="needs">
+										<option value="no">No</option>
+										<option value="yes">Sí</option>
+									</select><br>
+
+									<div id="additionalOptions_2" style="display: none;">
+										<p><b>INTOLERANCIAS</b></p>
+										<textarea name="intolerancia" id="intolerancia" cols="30" rows="5" class="form-control" placeholder="Indica aquí los nombres junto con las intolerancias."></textarea>
+										<br>
+									</div>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-12">
+								<label for="message"><b>Mensaje</b></label>
 								<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Si vienes con más asistentes o necesitas hacernos saber algo, házlo aquí"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Enviar" class="btn btn-primary">
 						</div>
+						<br>
+						<p style="font-size: 15px;">* Campo obligatorio</p>
 
 					</form>	
 				</div>
@@ -219,6 +251,6 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
-	</body>
+</body>
 </html>
 
