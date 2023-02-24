@@ -230,3 +230,39 @@
 
 
 }());
+
+$(document).ready(function() {
+	$('body').append('<div class="overlay"></div>');
+	$('.image-container img').click(function() {
+	  var imgSrc = $(this).attr('src');
+	  $('body').append('<div class="zoomed-container"><img class="zoomed" src="' + imgSrc + '"></div>');
+	  $('.overlay').fadeIn();
+	  $('.zoomed-container').fadeIn();
+	});
+	$('.overlay, .zoomed-container').click(function() {
+	  $('.overlay').fadeOut();
+	  $('.zoomed-container').fadeOut(function() {
+		$(this).remove();
+	  });
+	});
+  });
+  
+
+  document.getElementById("needs").addEventListener("change", function() {
+    if (this.value === "yes") {
+      document.getElementById("additionalOptions").style.display = "block";
+    } else {
+      document.getElementById("additionalOptions").style.display = "none";
+    }
+  });
+
+  document.getElementById("needs_2").addEventListener("change", function() {
+    if (this.value === "yes") {
+      document.getElementById("additionalOptions_2").style.display = "block";
+    } else {
+      document.getElementById("additionalOptions_2").style.display = "none";
+    }
+  });
+  
+  
+  
